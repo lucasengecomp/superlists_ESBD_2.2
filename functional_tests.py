@@ -6,17 +6,6 @@
 ## 
 ## Segue abaixo o esboço da classe de teste functional_test.py que irá guiar todo o processo de implementação da to-do list com prioridades.
 
- 
-
-# from selenium import webdriver
-
-# browser = webdriver.Firefox()
-# browser.get("http://localhost:8000")
-
-# assert 'worked successfully' in browser.title
-
-
-
 ############################## INICIO ####################################
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
