@@ -77,9 +77,9 @@ class NewVsitorTest(unittest.TestCase):
         # como um item em uma lista de tarefas        
         
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(10)
 
-        self.check_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
+        self.check_for_row_in_list_table('1 - Comprar anzol - Prioridade Alta')
 
         # Ainda continua havendo uma caixa de texto convidando-a a 
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
@@ -92,13 +92,13 @@ class NewVsitorTest(unittest.TestCase):
         self.selector_method('Prioridade Baixa')
 
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(10)
 
 
         # A página é atualizada novamente e agora mostra os dois
         # itens em sua lista e as respectivas prioridades
-        self.check_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
-        self.check_for_row_in_list_table('2 - Comprar cola instantânea - prioridade baixa')
+        self.check_for_row_in_list_table('1 - Comprar anzol - Prioridade Alta')
+        self.check_for_row_in_list_table('2 - Comprar cola instantânea - Prioridade Baixa')
 
         # Edith se pergunta se o site lembrará de sua lista. Então
         # ela nota que o site gerou um URL único para ela -- há um
