@@ -155,12 +155,12 @@ class NewVsitorTest(LiveServerTestCase):
 
         # Francis obtém seu próprio URL exclusivo
         francis_list_url = self.browser.current_url
-        self.assertRegex(edith_list_url, '/list/.+')
+        self.assertRegex(francis_list_url, '/lists/.+')
         self.assertNotEqual( francis_list_url, edith_list_url)
 
         # Novamente não há sinal algum da lista de Edith
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Comprar anzol', page_text)
-        self.assertIn('Comprar cola instantânea', page_text) 
+        self.assertIn('Buy milk', page_text) 
 
 ################################# FIM ####################################
