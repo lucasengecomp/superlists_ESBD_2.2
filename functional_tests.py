@@ -30,7 +30,7 @@ class NewVsitorTest(unittest.TestCase):
 
     def selector_method(self, options_text):
         selector = Select(self.browser.find_element_by_id("id_priority"))
-        options = selector.options        
+        options = selector.options
 
         self.assertEqual(
         [entry.text for entry in options],
