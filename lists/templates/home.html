@@ -4,10 +4,18 @@
 	</head>
 	<body>
 		<h1>Priority To-Do</h1>
-		<input id="id_new_item" placeholder="Enter a to-do item" />
-        <label>Prioridade Alta</label>
-		<input type="checkbox" id="id_high_priority" value="prioridade alta" />
+		<form method="POST">
+		    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+            <label>Prioridade Alta</label>
+		    <input type="checkbox" id="id_high_priority" value="prioridade alta" />
+		    <label>Prioridade Média</label>
+		    <input type="checkbox" id="id_medium_priority" value="prioridade media" />
+            <label>Prioridade Baixa</label>
+		    <input type="checkbox" id="id_low_priority" value="prioridade baixa" />
+		    {% csrf_token %}
+		</form>
 		<table id="id_list_table">
+			<tr><td>1 - {{ new_item_text }}</td></tr>
 		</table>
 	</body>
 </html>

@@ -66,24 +66,37 @@ class NewVsitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1 - Comprar anzol - prioridade alta' for row in rows)
-        )
+        self.assertIn('1 - Comprar anzol', [row.text for row in rows])
 
         # Ainda continua havendo uma caixa de texto convidando-a a 
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
         # e assinala prioridade baixa pois ela ainda tem cola suficiente
         # por algum tempo
-    
-        self.fail('Finish the test!')
+
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys("Comprar cola instantânea")
+                
+        inputcheckbox = self.browser.find_element_by_id('id_low_priority')
+        self.assertEqual(inputcheckbox.get_attribute('value'),'prioridade baixa')
+        
+        inputcheckbox.click()
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
 
         # A página é atualizada novamente e agora mostra os dois
         # itens em sua lista e as respectivas prioridades
-        
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1 - Comprar anzol', [row.text for row in rows])
+        self.assertIn('2 - Comprar cola instantânea', [row.text for row in rows])        
+
         # Edith se pergunta se o site lembrará de sua lista. Então
         # ela nota que o site gerou um URL único para ela -- há um
         # pequeno texto explicativo para isso.
         
+
+        self.fail('Finish the test!')
         # Ela acessa essa URL -- sua lista de tarefas continua lá.
 
  
