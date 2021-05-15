@@ -24,12 +24,12 @@ class ItemModelTest(TestCase):
 	def test_saving_and_retriving_items(self):
 		first_item = Item()
 		first_item.text = 'The first (ever) list item'
-		first_item.priority = 'Prioridade Alta'
+		first_item.priority = 1
 		first_item.save()
 
 		second_item = Item()
 		second_item.text = 'Item the second'
-		second_item.priority = 'Prioridade Baixa'
+		second_item.priority = 3
 		second_item.save()
 
 		saved_items = Item.objects.all()
@@ -39,6 +39,6 @@ class ItemModelTest(TestCase):
 		second_saved_item = saved_items[1]
 
 		self.assertEquals(first_saved_item.text, 'The first (ever) list item')		
-		self.assertEquals(first_item.priority, 'Prioridade Alta')
+		self.assertEquals(first_item.priority, 1)
 		self.assertEquals(second_saved_item.text, 'Item the second')
-		self.assertEquals(second_saved_item.priority, 'Prioridade Baixa')		
+		self.assertEquals(second_saved_item.priority, 3)		

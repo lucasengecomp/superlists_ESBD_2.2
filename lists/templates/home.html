@@ -7,14 +7,14 @@
 		<form method="POST">
 		    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
 			<select name="item_priority" id="id_priority">
-			  <option value="Prioridade Alta">Prioridade Alta</option>
-			  <option value="Prioridade Média">Prioridade Média</option>
-			  <option value="Prioridade Baixa">Prioridade Baixa</option>
+			  <option value="1 | Prioridade Alta">Prioridade Alta</option>
+			  <option value="2 | Prioridade Média">Prioridade Média</option>
+			  <option value="3 | Prioridade Baixa">Prioridade Baixa</option>
 			</select>
 		    {% csrf_token %}
 		</form>
 		<table id="id_list_table">
-			<tr><td>1 - {{ new_item_text }} - {{new_item_priority}}</td></tr>
+			<tr><td>1 - {{ new_item_text }} - {{new_item_priority | last}}</td></tr>
 		</table>
 	</body>
 </html>
