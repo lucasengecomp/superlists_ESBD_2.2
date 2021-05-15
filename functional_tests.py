@@ -19,7 +19,12 @@ class NewVsitorTest(unittest.TestCase):
 
     def tearDown(self):
         self.browser.quit()
-
+    
+    # Auxiliary method 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith ouviu falar que agora a aplicação online de lista de tarefas
@@ -86,10 +91,8 @@ class NewVsitorTest(unittest.TestCase):
 
         # A página é atualizada novamente e agora mostra os dois
         # itens em sua lista e as respectivas prioridades
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1 - Comprar anzol', [row.text for row in rows])
-        self.assertIn('2 - Comprar cola instantânea', [row.text for row in rows])        
+        self.check_for_row_in_list_table('1 - Comprar anzol')
+        self.check_for_row_in_list_table('2 - Comprar cola instantânea')
 
         # Edith se pergunta se o site lembrará de sua lista. Então
         # ela nota que o site gerou um URL único para ela -- há um
