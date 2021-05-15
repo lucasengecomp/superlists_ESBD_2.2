@@ -1,4 +1,5 @@
 # superlists_ESBD_2.2
+<<<<<<< HEAD
 ESBD 2.2 - Teste de Software Aplicado ao Desenvolvimento de Software  
 
 Turma A:
