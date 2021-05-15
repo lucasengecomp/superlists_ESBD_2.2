@@ -77,7 +77,7 @@ class NewVsitorTest(unittest.TestCase):
         # como um item em uma lista de tarefas        
         
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(10)
+        time.sleep(1)
 
         self.check_for_row_in_list_table('1 - Comprar anzol - Prioridade Alta')
 
@@ -92,7 +92,7 @@ class NewVsitorTest(unittest.TestCase):
         self.selector_method('Prioridade Baixa')
 
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(10)
+        time.sleep(1)
 
 
         # A página é atualizada novamente e agora mostra os dois
