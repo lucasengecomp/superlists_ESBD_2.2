@@ -7,6 +7,7 @@
 ## Segue abaixo o esboço da classe de teste functional_test.py que irá guiar todo o processo de implementação da to-do list com prioridades.
 
 ############################## INICIO ####################################
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -14,7 +15,7 @@ import time
 import unittest
 
 
-class NewVsitorTest(unittest.TestCase): 
+class NewVsitorTest(LiveServerTestCase): 
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -47,7 +48,7 @@ class NewVsitorTest(unittest.TestCase):
 
     
         
-        self.browser.get("http://localhost:8000")
+        self.browser.get(self.live_server_url)
 
         # Ela percebe que o título da página e o cabeçalho mencionam
         # listas de tarefas com prioridade (priority to-do)
@@ -111,7 +112,3 @@ class NewVsitorTest(unittest.TestCase):
  
 
 ################################# FIM ####################################
-
-
-if __name__ == '__main__':
-        unittest.main()
