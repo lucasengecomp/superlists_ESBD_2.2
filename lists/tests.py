@@ -31,18 +31,6 @@ class HomePageTest(TestCase):
 		self.assertEquals(response.status_code, 302)
 		self.assertEquals(response['location'], '/lists/the-only-list-in-the-world/')
 
-	def test_displays_all_list_itens(self):
-		Item.objects.create(text='itemey 1', priority='priority 1')
-		Item.objects.create(text='itemey 2', priority='priority 2')
-
-		response = self.client.get('/')
-
-
-		self.assertIn('itemey 1', response.content.decode())		
-		self.assertIn('priority 1', response.content.decode())
-		self.assertIn('itemey 2', response.content.decode())		
-		self.assertIn('priority 2', response.content.decode())
-
 
 class ListViewTest(TestCase):
 	def test_displays_all_list_itens(self):
