@@ -9,8 +9,10 @@
 ############################## INICIO ####################################
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 import time
 import unittest
+
 
 class NewVsitorTest(unittest.TestCase): 
 
@@ -26,10 +28,24 @@ class NewVsitorTest(unittest.TestCase):
         rows = table.find_elements_by_tag_name('tr')
         self.assertIn(row_text, [row.text for row in rows])
 
+    def selector_method(self, options_text):
+        selector = Select(self.browser.find_element_by_id("id_priority"))
+        options = selector.options        
+
+        self.assertEqual(
+        [entry.text for entry in options],
+        ['Prioridade Alta', 'Prioridade Média', 'Prioridade Baixa']
+        )
+
+        selector.select_by_visible_text(options_text)
+
+
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith ouviu falar que agora a aplicação online de lista de tarefas
         # aceita definir prioridades nas tarefas do tipo baixa, média e alta
         # Ela decide verificar a homepage
+
+    
         
         self.browser.get("http://localhost:8000")
 
@@ -54,24 +70,16 @@ class NewVsitorTest(unittest.TestCase):
         
         inputbox.send_keys('Comprar anzol')
 
-        inputcheckbox = self.browser.find_element_by_id('id_high_priority')
-        self.assertEqual(
-        inputcheckbox.get_attribute('value'),
-        'prioridade alta'
-        )
-        inputcheckbox.click()
+        self.selector_method('Prioridade Alta')
 
         # Quando ela tecla enter, a página é atualizada, e agora
         # a página lista "1 - Comprar anzol - prioridade alta"
-        # como um item em uma lista de tarefas
-        
+        # como um item em uma lista de tarefas        
         
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1 - Comprar anzol', [row.text for row in rows])
+        self.check_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
 
         # Ainda continua havendo uma caixa de texto convidando-a a 
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
@@ -80,19 +88,17 @@ class NewVsitorTest(unittest.TestCase):
 
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys("Comprar cola instantânea")
-                
-        inputcheckbox = self.browser.find_element_by_id('id_low_priority')
-        self.assertEqual(inputcheckbox.get_attribute('value'),'prioridade baixa')
-        
-        inputcheckbox.click()
+
+        self.selector_method('Prioridade Baixa')
+
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
 
         # A página é atualizada novamente e agora mostra os dois
         # itens em sua lista e as respectivas prioridades
-        self.check_for_row_in_list_table('1 - Comprar anzol')
-        self.check_for_row_in_list_table('2 - Comprar cola instantânea')
+        self.check_for_row_in_list_table('1 - Comprar anzol - prioridade alta')
+        self.check_for_row_in_list_table('2 - Comprar cola instantânea - prioridade baixa')
 
         # Edith se pergunta se o site lembrará de sua lista. Então
         # ela nota que o site gerou um URL único para ela -- há um

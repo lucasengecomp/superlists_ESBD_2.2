@@ -6,16 +6,17 @@
 		<h1>Priority To-Do</h1>
 		<form method="POST">
 		    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
-            <label>Prioridade Alta</label>
-		    <input type="checkbox" id="id_high_priority" value="prioridade alta" />
-		    <label>Prioridade Média</label>
-		    <input type="checkbox" id="id_medium_priority" value="prioridade media" />
-            <label>Prioridade Baixa</label>
-		    <input type="checkbox" id="id_low_priority" value="prioridade baixa" />
+			<select name="item_priority" id="id_priority">
+			  <option value="prioridade alta">Prioridade Alta</option>
+			  <option value="prioridade media">Prioridade Média</option>
+			  <option value="prioridade baixa">Prioridade Baixa</option>
+			</select>
 		    {% csrf_token %}
 		</form>
 		<table id="id_list_table">
-			<tr><td>1 - {{ new_item_text }}</td></tr>
+			<tr><td>1 - {{ new_item_text }} - {{new_item_priority}}</td></tr>
 		</table>
 	</body>
 </html>
+
+
