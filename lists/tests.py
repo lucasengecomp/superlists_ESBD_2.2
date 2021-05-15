@@ -29,7 +29,7 @@ class HomePageTest(TestCase):
 		response = self.client.post('/', data={'item_text': 'A new list item', 'item_priority': "Prioridade Alta"})
 
 		self.assertEquals(response.status_code, 302)
-		self.assertEquals(response['location'], '/')
+		self.assertEquals(response['location'], '/lists/the-only-list-in-the-world/')
 
 	def test_displays_all_list_itens(self):
 		Item.objects.create(text='itemey 1', priority='priority 1')
