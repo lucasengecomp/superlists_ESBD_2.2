@@ -14,9 +14,9 @@
 		    {% csrf_token %}
 		</form>
 		<table id="id_list_table">
-			<tr><td>1 - {{ new_item_text }} - {{new_item_priority}}</td></tr>
+			{% for item in items %}
+			<tr><td>{{ forloop.counter }} - {{ item.text }} - {{item.priority}}</td></tr>
+			{% endfor %}
 		</table>
 	</body>
 </html>
-
-
